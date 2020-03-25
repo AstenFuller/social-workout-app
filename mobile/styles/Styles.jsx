@@ -30,6 +30,11 @@ export const login = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold'
+  },
+  header:{
+    fontSize: 50,
+    alignSelf: 'center',
+    color: 'white',
   }
 })
 
