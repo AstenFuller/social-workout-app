@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { TextInput, Text, View, TouchableOpacity } from 'react-native';
 import { login } from '../../../styles/Styles';
 import { 
@@ -25,6 +26,11 @@ class Login extends Component {
     dispatch(handleLoginSubmit(this.props.loginEmail, this.props.loginPassword))
   }
 
+  goToRegister = () => Actions.goToRegister()
+  
+
+  
+
   render() {
     return (
       <View style={login.container}>
@@ -49,7 +55,7 @@ class Login extends Component {
         >
           <Text style={login.buttonText}>Sign In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={login.button}>
+        <TouchableOpacity style={login.button} onPress={this.goToRegister}>
           <Text style={login.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
