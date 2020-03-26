@@ -1,37 +1,49 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { register } from '../../../styles/Styles';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import {
+  handleUsername,
+  handleRegisterEmail,
+  handleRegisterPassword,
+  handleConfirmedRegisterPassword,
+  handleRegisterSubmit
+} from './registerActions';
 
-export default class Register extends Component {
+class Register extends Component {
 
   handleUsername = text => {
     const { dispatch } = this.props;
-    dispatch(handleLoginEmail(text))
+    dispatch(handleUsername(text));
   }
 
   handleEmail = text => {
     const { dispatch } = this.props;
-    dispatch(handleLoginEmail(text))
+    dispatch(handleRegisterEmail(text));
   }
 
   handlePassword = text => {
     const { dispatch } = this.props;
-    dispatch(handleLoginPassword(text))
+    dispatch(handleRegisterPassword(text));
   }
 
   handleConfirmedPassword = text => {
     const { dispatch } = this.props;
-    dispatch(handleConfirmedLoginPassword(text))
+    dispatch(handleConfirmedRegisterPassword(text));
   }
 
   handleSubmit = () => {
     const { dispatch } = this.props;
-    dispatch(handleLoginSubmit(this.props.username, this.props.loginEmail, this.props.loginPassword, this.props.confirmedLoginPassword))
+    if(this.props.confirmedRegisterPassword != this.props.registerPassword){
+      return;
+    } else {
+      dispatch(handleRegisterSubmit(this.props.username, this.props.registerEmail, this.props.registerPassword));
+    }
   }
+
   render() {
     return (
-      <View>
+      <View style={register.container}>
         <View style={{ paddingBottom: 75 }}>
           <Text style={register.header}>Sign In</Text>
         </View>
@@ -39,7 +51,7 @@ export default class Register extends Component {
           style={register.input}
           placeholder="Enter Username"
           placeholderTextColor='white'
-          onChangeText={text => this.handleUserName(text)}
+          onChangeText={text => this.handleUsername(text)}
         />
         <TextInput
           style={register.input}
@@ -73,11 +85,10 @@ export default class Register extends Component {
 function mapStoreToProps(store) {
     return {
       username: store.register.username,
-      loginEmail: store.register.loginEmail,
-      loginPassword: store.register.loginPassword,
-      confirmedLoginPassword: store.register.confirmedLoginPassword,
-      success: store.register.success
+      registerEmail: store.register.registerEmail,
+      registerPassword: store.register.registerPassword,
+      confirmedRegisterPassword: store.register.confirmedRegisterPassword,
     }
   }
 
-export default connect(mapStoreToProps)(LandingPage);
+export default connect(mapStoreToProps)(Register);

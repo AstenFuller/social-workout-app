@@ -9,40 +9,49 @@ export function handleUsername(username) {
   }
 }
 
-export function handleLoginEmail(email) {
+export function handleRegisterEmail(email) {
     return {
-        type: 'HANDLE_LOGIN_EMAIL',
+        type: 'HANDLE_REGISTER_EMAIL',
         payload: { email }
     }
 }
 
-export function handleLoginPassword(password) {
+export function handleRegisterPassword(password) {
     return {
-        type: 'HANDLE_LOGIN_PASSWORD',
+        type: 'HANDLE_REGISTER_PASSWORD',
         payload: { password }
     }
 }
-export function handleConfirmedLoginPassword(confirmedPassword) {
+
+export function handleConfirmedRegisterPassword(confirmedPassword) {
     return {
-        type: 'HANDLE_CONFIRMED_LOGIN_PASSWORD',
+        type: 'HANDLE_CONFIRMED_REGISTER_PASSWORD',
         payload: { confirmedPassword }
     }
 }
-export function handleLoginSubmit(username, email, password, confirmedPassword) {
+
+export function handleRegisterSubmit(username, email, password) {
   return dispatch => {
       return dispatch({
           type: 'HANDLE_CREATE_USER_SUBMIT',
-          payload: axios.post(`${HOST}/api/Users/login`, {
-              username: username.toLowerCase(),
-              email: email.toLowerCase(),
+          payload: 
+            axios.post(`${HOST}/api/Users`, {
+              username: username,
+              email: email,
               password: password,
-              confirmedPassword: confirmedPassword
           })
-          .then(res => {
-              Actions.landingPage()
-              return res.data.id
-          })
-          .catch(err => alert('Login attempt failed. Wrong username or password.'))
+						.then(res => 
+              axios.post(`${HOST}/api/Users/login`, {
+              	email: email,
+              	password: password
+            })
+            	.then(res => {
+                Actions.landingPage()
+                return res.data.id
+            	})
+							.catch(err => alert('Login attempt failed. Wrong username or password.'))
+						)
+					.catch(err => alert('Oops. Something went wrong.'))
       })
   }
 }

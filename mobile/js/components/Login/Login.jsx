@@ -7,30 +7,27 @@ import {
   handleLoginEmail,
   handleLoginPassword,
   handleLoginSubmit
- } from './loginRegisterActions';
+ } from './loginActions';
 
 class Login extends Component {
   
   handleEmail = text => {
     const { dispatch } = this.props;
-    dispatch(handleLoginEmail(text))
+    dispatch(handleLoginEmail(text));
   }
 
   handlePassword = text => {
     const { dispatch } = this.props;
-    dispatch(handleLoginPassword(text))
+    dispatch(handleLoginPassword(text));
   }
 
   handleSubmit = () => {
     const { dispatch } = this.props;
-    dispatch(handleLoginSubmit(this.props.loginEmail, this.props.loginPassword))
+    dispatch(handleLoginSubmit(this.props.loginEmail, this.props.loginPassword));
   }
 
-  goToRegister = () => Actions.goToRegister()
+  goToRegister = () => Actions.register();
   
-
-  
-
   render() {
     return (
       <View style={login.container}>
@@ -55,7 +52,7 @@ class Login extends Component {
         >
           <Text style={login.buttonText}>Sign In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={login.button} onPress={this.goToRegister}>
+        <TouchableOpacity style={login.button} onPress={() => this.goToRegister()}>
           <Text style={login.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
@@ -65,9 +62,8 @@ class Login extends Component {
 
 function mapStoreToProps(store) {
   return {
-    loginEmail: store.loginRegister.loginEmail,
-    loginPassword: store.loginRegister.loginPassword,
-    success: store.loginRegister.success
+    loginEmail: store.login.loginEmail,
+    loginPassword: store.login.loginPassword
   }
 }
 

@@ -38,7 +38,7 @@ export const login = StyleSheet.create({
   }
 })
 
-export const Register = StyleSheet.create({
+export const register = StyleSheet.create({
   container: {
     justifyContent: 'center',
     flex: 1,
@@ -75,4 +75,3 @@ export const Register = StyleSheet.create({
     color: 'white',
   }
 })
-
