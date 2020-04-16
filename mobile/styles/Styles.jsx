@@ -51,7 +51,6 @@ export const register = StyleSheet.create({
     borderColor: 'white',
     borderWidth: 1,
     borderRadius: 10
-
   },
   button: {
     borderColor: 'white',
