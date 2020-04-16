@@ -15,14 +15,12 @@ class ScheduleDetails extends Component {
       :
       <View></View>
     );
-
   }
 
   render() {
     return (
       <View style={scheduleDetails.container} >
-        <ScrollView>{this.workouts()}</ScrollView>
-        
+        <ScrollView>{this.workouts()}</ScrollView> 
       </View>
     )
   }
