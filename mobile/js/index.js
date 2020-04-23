@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Routes from './components/Routes'
 import store from './rootStore';
 
+
 class App extends Component {
   render() {
     return (

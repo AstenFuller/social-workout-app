@@ -7,6 +7,7 @@ import { landingPage } from '../../../styles/Styles'
 import Schedule from '../Schedule/Schedule';
 // import { createDrawerNavigator } from '@react-navigation/drawer';
 // import { NavigationContainer } from '@react-navigation/native';
+import Header from '../Header/Header';
 
 class LandingPage extends Component {
 
@@ -32,15 +33,18 @@ class LandingPage extends Component {
       })
     )
   }
-  
+
   // goToHeader = () => Actions.header();
 
   render() {
     return (
-      <ScrollView style={landingPage.container} scrollEnabled={true}>
-        <Button  title='Header' style={{color: 'black'}} />
-        <View style={{ flex: 1 }}>{this.gymList()}</View>
-      </ScrollView>
+      <View>
+        <Header />
+        <ScrollView style={landingPage.container} scrollEnabled={true}>
+          {/* <Button  title='Header' style={{color: 'black'}} /> */}
+          <View style={{ flex: 1 }}>{this.gymList()}</View>
+        </ScrollView>
+      </View>
     )
   }
 }
